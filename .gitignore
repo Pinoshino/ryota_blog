@@ -7,6 +7,10 @@
 # Ignore bundler config.
 /.bundle
 
+# Ignore the default SQLite database.
+/db/*.sqlite3
+/db/*.sqlite-journal
+
 # Ignore all logfiles and tempfiles.
 /log/*
 /tmp/*
@@ -14,3 +18,11 @@
 !/tmp/.keep
 
 .byebug_history
+
+# Ignore other unneeded files.
+.rvmrc
+.DS_Store
+.coffee
+*.swp
+.idea
+.secret
