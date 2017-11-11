@@ -1,0 +1,21 @@
+.panel.panel-default
+  .panel-heading
+    h1.panel-title = @article.title
+  .panel-body = @article.content
+
+.article-action.clearfix
+  .pull-right
+    = link_to edit_article_path, class: "btn btn-success"
+      i.fa.fa-pencil aria-hidden="true"
+      span 編集する
+    = link_to @article, class: "btn btn-warning", method: :delete, data: { confirm: "本当に削除しますか？" }
+      i.fa.fa-times aria-hidden="true"
+      span 削除する
+
+h2 コメント一覧
+= render 'comments/form', { comment: @comment, button_string: "コメントする" }
+- if @comments.any?
+  #comments
+    = render @comments
+- else
+  h3 コメントはありません
