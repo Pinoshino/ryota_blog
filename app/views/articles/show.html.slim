@@ -1,21 +1,32 @@
-.panel.panel-default
-  .panel-heading
-    h1.panel-title = @article.title
-  .panel-body = @article.content
+h1
+  = @article.title
+h2
+  = "投稿者:"
+  = @article.name
+p 
+  = @article.content
 
-.article-action.clearfix
-  .pull-right
-    = link_to edit_article_path, class: "btn btn-success"
-      i.fa.fa-pencil aria-hidden="true"
+div
+  div
+    = button_to edit_article_path
       span 編集する
-    = link_to @article, class: "btn btn-warning", method: :delete, data: { confirm: "本当に削除しますか？" }
-      i.fa.fa-times aria-hidden="true"
+    = button_to @article, method: :delete, data: { confirm: "本当に削除しますか？" }
       span 削除する
 
 h2 コメント一覧
-= render 'comments/form', { comment: @comment, button_string: "コメントする" }
 - if @comments.any?
-  #comments
-    = render @comments
+    p
+      - @article.comments.each do |comment|
+        = comment.from
+        = ":"
+        = comment.body
+        br
+        = button_to "削除", [@article, comment], method: :delete, data: { confirm: "本当に削除しますか？" }
+        br
 - else
-  h3 コメントはありません
+  p コメントはありません
+  
+h2 コメントを書く
+= render 'comments/form', { comment: @comment, button_string: "コメントする" }
+
+=link_to 'トップに戻る', root_path
