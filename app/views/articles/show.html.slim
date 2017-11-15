@@ -8,7 +8,7 @@ p
 
 div
   div
-    = button_to edit_article_path
+    = button_to edit_article_path, method: :get
       span 編集する
     = button_to @article, method: :delete, data: { confirm: "本当に削除しますか？" }
       span 削除する
