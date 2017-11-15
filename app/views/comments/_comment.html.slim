@@ -1,0 +1,9 @@
+div id="comment-#{comment.id}"
+  div.from 
+    div 名前
+    = comment.from
+  div.body
+    div コメント
+    = comment.body
+  div
+    = render 'comments/form' , { comment: comment, button_string: "更新する" }
