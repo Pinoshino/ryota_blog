@@ -1,0 +1,32 @@
+h1
+  = @article.title
+h2
+  = "投稿者:"
+  = @article.name
+p 
+  = @article.content
+
+div
+  div
+    = button_to edit_article_path, method: :get
+      span 編集する
+    = button_to @article, method: :delete, data: { confirm: "本当に削除しますか？" }
+      span 削除する
+
+h2 コメント一覧
+- if @comments.any?
+    p
+      - @article.comments.each do |comment|
+        = comment.from
+        = ":"
+        = comment.body
+        br
+        = button_to "削除", [@article, comment], method: :delete, data: { confirm: "本当に削除しますか？" }
+        br
+- else
+  p コメントはありません
+  
+h2 コメントを書く
+= render 'comments/form', { comment: @comment, button_string: "コメントする" }
+
+=link_to 'トップに戻る', root_path

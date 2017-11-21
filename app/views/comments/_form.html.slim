@@ -1,0 +1,13 @@
+= form_for [@article, comment] do |f|
+
+  .form-group
+    = f.label "名前"
+    br
+    = f.text_field :from, class: "form-control"
+
+  .form-group
+    = f.label "コメント"
+    br
+    = f.text_field :body, class: "form-control"
+    
+  = f.submit button_string
